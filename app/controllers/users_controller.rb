@@ -14,7 +14,13 @@ class UsersController < ApplicationController
     # this method is used in conjunction with the form to create new users
     @user = User.new(user_params)
     if @user.save
-      # Handle a successful save
+      # greets users, disappears after visiting another page or reloading page
+      flash[:success] = "Welcome To The Sample App!"
+      # after successful completion of signup, user will be redirected
+      # to own users page
+      # we could have used 'redirect_to user_url(@user)' but not needed
+      # rails automatically knows what we are asking
+      redirect_to @user
     else
       render 'new'
     end
