@@ -18,8 +18,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  # logs out the current user, check session_helper for details
   def destroy
-    
+    log_out
+    redirect_to root_url, notice: "You have successfully logged out."
   end
 
 end

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  # create an accessible attribute
+  attr_accessor :remember_token
   # callback used to make sure email is downcased before saved
   before_save { self.email = email.downcase }
   # validates if the user name is blank and maximum characters allowed
@@ -31,4 +33,16 @@ class User < ActiveRecord::Base
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)              
   end
+
+  # returns a random token
+  def User.new_method
+    SecureRandom.urlsafe_base64
+  end
+
+  # remembers a user in the database for use in persistent sessions
+  def remember
+    self.remember_token = User.new_token
+    update_attributes(:remember_digest, User.digest(remember_token))
+  end
+
 end

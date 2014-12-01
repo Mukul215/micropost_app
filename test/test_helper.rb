@@ -10,4 +10,9 @@ class ActiveSupport::TestCase
   # Convenient to use the full_title helper in the tests by including the Application helper
   include ApplicationHelper
   # Add more helper methods to be used by all tests here...
+
+  # returns true if a test user is logged in
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
 end
