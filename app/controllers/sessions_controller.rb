@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
-      remember user
+      # use of ternary operator
+      # this is used to see if user checked 'remember me' checkbox
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
       # flash.now is used so when going to homepage the danger
@@ -21,7 +23,7 @@ class SessionsController < ApplicationController
 
   # logs out the current user, check session_helper for details
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url, notice: "You have successfully logged out."
   end
 
