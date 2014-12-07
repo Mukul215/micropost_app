@@ -28,6 +28,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   private
     # used as a more secure way of justifying which params users can fill in
     def user_params
