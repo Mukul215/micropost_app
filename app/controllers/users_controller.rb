@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   # requires users to be logged in to edit these features
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+
+  def index
+    # we are using this instead of User.all so that we can
+    # paginate all the users rather than have them all on one page
+    @users = User.paginate(page: params[:page])
+  end
 
   def show
     # this is used to find users by their ID
