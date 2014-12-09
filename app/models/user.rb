@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   # 3.) An authenticate method that returns the user when the password is 
   # correct (and false otherwise)
   has_secure_password
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, allow_blank: true
 
   # returns the hash digest of a given string
   def self.digest(string)

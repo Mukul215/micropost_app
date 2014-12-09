@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
       # use of ternary operator
       # this is used to see if user checked 'remember me' checkbox
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      # redirect to previous page or defualt page when trying to perform
+      # something if not logged in
+      redirect_back_or user
     else
       # flash.now is used so when going to homepage the danger
       # message is not there anymore
