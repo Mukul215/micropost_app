@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # requires users to be logged in to edit these features
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only:  :destroy
 
   def index
     # we are using this instead of User.all so that we can
@@ -51,6 +52,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+
   private
     # used as a more secure way of justifying which params users can fill in
     def user_params
@@ -75,6 +82,10 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 
 end

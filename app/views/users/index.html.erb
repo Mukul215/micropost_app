@@ -4,12 +4,12 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
   <!-- used a partial, _user.html.erb -->
-    <%= render user %>
-  <% end %>
+  <!-- we refactored code, rails knows to look -->
+  <!-- for @users. we do not need to inlude previoud code -->
+  <%= render @users %>
 </ul>
 
-<!-- we user this twice so that we can 
-     have links above and below the users -->
+<!-- we user this twice so that we can -->
+<!-- have links above and below the users -->
 <%= will_paginate %>
