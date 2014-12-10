@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
     update_attribute(:activated_at, Time.zone.now)
   end
 
+  # sends activation email
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
   private
     # self refers to class, so self.email means user.email
     # converts all email to lowercase
