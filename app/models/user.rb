@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
   # create an accessible attribute
   attr_accessor :remember_token, :activation_token, :reset_token
   # callback used to make sure email is downcased before saved
