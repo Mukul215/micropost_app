@@ -2,16 +2,27 @@
 
 orange:
   content: "I just ate an orange"
-  created_at: <%= 10.minutes.ago %> 
+  created_at: <%= 10.minutes.ago %>
+  user: mukul
 
 apple:
   content: "I just cut up an apple"
   created_at: <%= 2.years.ago %>
+  user: mukul
 
 cat_video:
   content: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
   created_at: <%= 2.hours.ago %>
+  user: mukul
 
 most_recent:
   content: "Just testing out the site"
   created_at: <%= Time.zone.now %>
+  user: mukul
+
+<% 30.times.do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: 42.days.ago
+  user: mukul
+<% end %>
