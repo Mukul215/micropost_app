@@ -3,7 +3,7 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.button "Post", class: "btn btn-primary btn-lg btn-block", data: { disable_with: "<i class='fa fa-cog fa-spin'></i> Posting..." } %>
   <span class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
   </span>
